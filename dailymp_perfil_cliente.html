@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Miranda Pardo — Consultora Web & IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:    #0D0D14;
+    --ink2:   #2A2A3A;
+    --muted:  #6B6B80;
+    --line:   #E2E2EC;
+    --bg:     #F8F7F4;
+    --white:  #FFFFFF;
+    --red:    #C0392B;
+    --red2:   #E8503F;
+    --accent: #1A1A2E;
+    --gold:   #B5985A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ─────────────────────────────────────────────────────────── */
+  .hero {
+    background: var(--accent);
+    color: #fff;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.06);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.04);
+    pointer-events: none;
+  }
+
+  .hero-left {
+    padding: 64px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 6px;
+    color: #fff;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 400;
+    color: rgba(255,255,255,.55);
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    color: rgba(255,255,255,.7);
+    line-height: 1.75;
+    max-width: 440px;
+    margin-bottom: 48px;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: .03em;
+    transition: all .2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--red2);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #d44030; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,.8);
+    border: 1px solid rgba(255,255,255,.2);
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 56px 64px 32px;
+    z-index: 2;
+  }
+
+  .stats-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 4px;
+    padding: 40px;
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 36px;
+  }
+
+  .stat-item {}
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-num span { font-size: 22px; color: var(--gold); }
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,.45);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  .avail-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 2px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: rgba(255,255,255,.75);
+  }
+  .avail-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76,175,80,.2);
+    flex-shrink: 0;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(76,175,80,.2); }
+    50% { box-shadow: 0 0 0 6px rgba(76,175,80,.1); }
+  }
+
+  .tech-row {
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,.08);
+  }
+  .tech-label {
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.3);
+    margin-bottom: 12px;
+    font-family: 'DM Mono', monospace;
+  }
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tech-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.5);
+    border: 1px solid rgba(255,255,255,.08);
+  }
+
+  /* ── SECTIONS ─────────────────────────────────────────────────────── */
+  .section { padding: 96px 0; }
+  .section-alt { background: var(--white); }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 580px;
+    margin-bottom: 56px;
+  }
+
+  /* ── SERVICES ─────────────────────────────────────────────────────── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 36px 32px;
+    transition: background .2s;
+    position: relative;
+  }
+  .service-card:hover { background: #FAFAF8; }
+
+  .service-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    opacity: .5;
+  }
+  .service-icon {
+    font-size: 22px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .service-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .service-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    background: var(--bg);
+    color: var(--muted);
+    border-radius: 2px;
+  }
+
+  /* ── HIGHLIGHTS BAR ───────────────────────────────────────────────── */
+  .highlights-bar {
+    background: var(--accent);
+    padding: 56px 0;
+  }
+  .highlights-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .hl-item {
+    padding: 24px 32px;
+    border-right: 1px solid rgba(255,255,255,.08);
+    text-align: center;
+  }
+  .hl-item:last-child { border-right: none; }
+  .hl-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .hl-val em { font-style: normal; color: var(--gold); font-size: 20px; }
+  .hl-desc { font-size: 12px; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .08em; }
+
+  /* ── TESTIMONIALS ─────────────────────────────────────────────────── */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .testi-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 32px;
+    position: relative;
+  }
+  .testi-card::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--line);
+    position: absolute;
+    top: 12px; left: 24px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .testi-text {
+    font-size: 14px;
+    color: var(--ink2);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    font-style: italic;
+    position: relative;
+  }
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .testi-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .testi-name {
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .testi-role {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .testi-li {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #0A66C2;
+    text-decoration: none;
+    margin-top: 6px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── WHY ME ───────────────────────────────────────────────────────── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .why-list { list-style: none; }
+  .why-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .why-item:last-child { border-bottom: none; }
+  .why-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--red);
+    margin-top: 3px;
+    flex-shrink: 0;
+    width: 20px;
+  }
+  .why-content h4 {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .why-content p {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .why-right {
+    background: var(--accent);
+    color: #fff;
+    padding: 40px;
+    border-radius: 2px;
+  }
+  .why-right h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .why-right p {
+    font-size: 14px;
+    color: rgba(255,255,255,.65);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .contact-list { list-style: none; margin-top: 28px; }
+  .contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    font-size: 13px;
+    color: rgba(255,255,255,.7);
+  }
+  .contact-list li:last-child { border-bottom: none; }
+  .contact-list a { color: rgba(255,255,255,.85); text-decoration: none; }
+  .contact-list a:hover { color: #fff; }
+  .contact-icon { font-size: 15px; }
+
+  /* ── FOOTER ───────────────────────────────────────────────────────── */
+  footer {
+    background: #0A0A14;
+    padding: 40px 0;
+    text-align: center;
+  }
+  footer .logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: rgba(255,255,255,.3);
+    margin-bottom: 12px;
+  }
+  footer p {
+    font-size: 12px;
+    color: rgba(255,255,255,.2);
+  }
+  footer a { color: rgba(255,255,255,.35); text-decoration: none; }
+  footer a:hover { color: rgba(255,255,255,.65); }
+
+  /* ── RESPONSIVE ───────────────────────────────────────────────────── */
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { display: none; }
+    .hero-left { padding: 56px 28px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .highlights-inner { grid-template-columns: 1fr 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .container { padding: 0 24px; }
+    .section { padding: 64px 0; }
+  }
+
+  /* ── ANIMATIONS ───────────────────────────────────────────────────── */
+  .fade-in { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Quién soy</p>
+    <h1 class="hero-name">Daily<br>Miranda<br>Pardo</h1>
+    <p class="hero-title">Consultora Web & Integración IA</p>
+    <p class="hero-desc">
+      Ingeniera en Ciencias Informáticas con más de 20 años de experiencia y Másters duales en
+      Desarrollo de Software. Especializada en desarrollo web moderno, SEO técnico, WordPress
+      y la integración de inteligencia artificial en proyectos digitales.
+      Basada en Málaga, trabajando con clientes en toda España.
+    </p>
+    <div class="hero-links">
+      <a href="https://dailymp.es" target="_blank" class="btn btn-primary">
+        <span>🌐</span> dailymp.es
+      </a>
+      <a href="https://www.linkedin.com/in/daily-miranda-pardo/" target="_blank" class="btn btn-outline">
+        <span>💼</span> LinkedIn
+      </a>
+      <a href="https://wa.me/34656636774" target="_blank" class="btn btn-outline">
+        <span>💬</span> WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stats-card">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">20<span>+</span></div>
+          <div class="stat-label">Años de experiencia</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">95<span>+</span></div>
+          <div class="stat-label">PageSpeed Score</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">219<span>+</span></div>
+          <div class="stat-label">Tests E2E entregados</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">54<span>+</span></div>
+          <div class="stat-label">Artículos publicados</div>
+        </div>
+      </div>
+
+      <div class="avail-badge">
+        <span class="avail-dot"></span>
+        Disponible para nuevos proyectos
+      </div>
+
+      <div class="tech-row">
+        <div class="tech-label">Stack principal</div>
+        <div class="tech-tags">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Next.js</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">WordPress</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Claude AI</span>
+          <span class="tech-tag">Supabase</span>
+          <span class="tech-tag">Tailwind</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HIGHLIGHTS BAR ── -->
+<div class="highlights-bar">
+  <div class="highlights-inner">
+    <div class="hl-item">
+      <div class="hl-val">20<em>+</em></div>
+      <div class="hl-desc">Años en activo</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-val">95<em>+</em></div>
+      <div class="hl-desc">PageSpeed garantizado</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-val">219<em>+</em></div>
+      <div class="hl-desc">Tests E2E entregados</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-val">54<em>+</em></div>
+      <div class="hl-desc">Artículos técnicos</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section class="section section-alt">
+  <div class="container">
+    <p class="section-label fade-in">Lo que ofrezco</p>
+    <h2 class="section-title fade-in">Servicios para tu negocio digital</h2>
+    <p class="section-sub fade-in">Desde la emergencia técnica hasta la estrategia a largo plazo. Trabajo con herramientas modernas y metodología de ingeniería senior.</p>
+
+    <div class="services-grid fade-in">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <span class="service-icon">🔧</span>
+        <div class="service-name">Desarrollo & Mejora WordPress</div>
+        <p class="service-desc">Optimización técnica, seguridad, rendimiento y rediseño de sitios WordPress. Código limpio, updates controlados y sin roturas.</p>
+        <div class="service-tags">
+          <span class="service-tag">WordPress</span>
+          <span class="service-tag">Elementor</span>
+          <span class="service-tag">Seguridad</span>
+          <span class="service-tag">Performance</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <span class="service-icon">🔍</span>
+        <div class="service-name">SEO Técnico Avanzado</div>
+        <p class="service-desc">Auditoría, limpieza de hacks, Schema.org, Core Web Vitals, Google Search Console, posicionamiento local y estrategia de contenido.</p>
+        <div class="service-tags">
+          <span class="service-tag">Schema.org</span>
+          <span class="service-tag">Core Web Vitals</span>
+          <span class="service-tag">GSC</span>
+          <span class="service-tag">Local SEO</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <span class="service-icon">🌐</span>
+        <div class="service-name">Diseño Web & Migración</div>
+        <p class="service-desc">Nuevos sitios desde cero o migración de hosting con configuración de dominio, correo corporativo y puesta en marcha completa.</p>
+        <div class="service-tags">
+          <span class="service-tag">Migración</span>
+          <span class="service-tag">DNS & Dominio</span>
+          <span class="service-tag">Correo corporativo</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <span class="service-icon">🤖</span>
+        <div class="service-name">Integración de IA</div>
+        <p class="service-desc">Automatizaciones, chatbots, publicación automática en redes sociales, análisis de datos y workflows con LLMs para tu negocio.</p>
+        <div class="service-tags">
+          <span class="service-tag">Claude AI</span>
+          <span class="service-tag">GitHub Actions</span>
+          <span class="service-tag">Python</span>
+          <span class="service-tag">Automatización</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <span class="service-icon">📋</span>
+        <div class="service-name">Mantenimiento Mensual</div>
+        <p class="service-desc">Updates, backups diarios, monitoreo de uptime, informes mensuales con métricas, soporte en 24-48h y cambios de contenido incluidos.</p>
+        <div class="service-tags">
+          <span class="service-tag">Backups</span>
+          <span class="service-tag">Uptime 24/7</span>
+          <span class="service-tag">Informes GA4</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <span class="service-icon">🚀</span>
+        <div class="service-name">Apps React & Next.js</div>
+        <p class="service-desc">Desarrollo frontend de alto rendimiento con TypeScript, arquitectura limpia, tests E2E y deploy en Vercel o Netlify.</p>
+        <div class="service-tags">
+          <span class="service-tag">Next.js 15</span>
+          <span class="service-tag">TypeScript</span>
+          <span class="service-tag">Playwright</span>
+          <span class="service-tag">Vercel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY ME ── -->
+<section class="section">
+  <div class="container">
+    <p class="section-label fade-in">Por qué elegirme</p>
+    <h2 class="section-title fade-in">Ingeniería real,<br>no plantillas</h2>
+
+    <div class="why-grid">
+      <ul class="why-list fade-in">
+        <li class="why-item">
+          <span class="why-num">01</span>
+          <div class="why-content">
+            <h4>20 años de experiencia técnica real</h4>
+            <p>Ingeniería en Ciencias Informáticas + Másters duales en Desarrollo de Software. No soy diseñadora que "hace webs" — soy ingeniera que construye sistemas.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="why-num">02</span>
+          <div class="why-content">
+            <h4>Trabajo con IA como herramienta, no como sustituta</h4>
+            <p>Especialista en integración de IA en desarrollo web. Uso LLMs, automatizaciones y herramientas AI para entregarte más en menos tiempo, con mejor calidad.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="why-num">03</span>
+          <div class="why-content">
+            <h4>Performance-first desde el día uno</h4>
+            <p>PageSpeed Score 95+ garantizado. Core Web Vitals optimizados. Los sitios que construyo cargan rápido porque el rendimiento afecta directamente al SEO y a la conversión.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="why-num">04</span>
+          <div class="why-content">
+            <h4>Comunicación directa y sin tecnicismos</h4>
+            <p>Explico todo en lenguaje claro. Recibes informes mensuales reales, sabes exactamente qué se ha hecho y por qué. Sin sorpresas en la factura.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="why-num">05</span>
+          <div class="why-content">
+            <h4>Basada en Málaga, disponible para toda España</h4>
+            <p>Conocimiento del mercado local y accesible para reuniones presenciales en la Costa del Sol cuando sea necesario.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="why-right fade-in">
+        <h3>Hablemos de tu proyecto</h3>
+        <p>Cuéntame dónde está tu sitio ahora y a dónde quieres llegar. Te preparo una propuesta en 48 horas.</p>
+        <p>Sin compromisos. Sin letra pequeña.</p>
+
+        <ul class="contact-list">
+          <li>
+            <span class="contact-icon">🌐</span>
+            <a href="https://dailymp.es" target="_blank">dailymp.es</a>
+          </li>
+          <li>
+            <span class="contact-icon">📧</span>
+            <a href="mailto:tech@dailymp.es">tech@dailymp.es</a>
+          </li>
+          <li>
+            <span class="contact-icon">💬</span>
+            <a href="https://wa.me/34656636774" target="_blank">WhatsApp directo</a>
+          </li>
+          <li>
+            <span class="contact-icon">💼</span>
+            <a href="https://www.linkedin.com/in/daily-miranda-pardo/" target="_blank">linkedin.com/in/daily-miranda-pardo</a>
+          </li>
+          <li>
+            <span class="contact-icon">💻</span>
+            <a href="https://github.com/dailymp" target="_blank">github.com/dailymp</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="section section-alt">
+  <div class="container">
+    <p class="section-label fade-in">Lo que dicen</p>
+    <h2 class="section-title fade-in">Recomendaciones de profesionales</h2>
+    <p class="section-sub fade-in">Valoraciones reales de compañeros, profesores y clientes a lo largo de mi carrera.</p>
+
+    <div class="testimonials-grid fade-in">
+      <div class="testi-card">
+        <p class="testi-text">"Es una persona muy organizada y una excelente solucionadora de problemas. Tiene mucha experiencia no solo en el contexto académico sino también en la industria. La recomiendo altamente dados su trayectoria profesional y sus habilidades de programación."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">MJ</div>
+          <div>
+            <div class="testi-name">María Jesús García Godoy</div>
+            <div class="testi-role">Senior Software Engineer · AI Specialist · PhD in AI</div>
+            <a class="testi-li" href="https://www.linkedin.com/in/maria-jesus-garcia-godoy/" target="_blank">🔗 Ver en LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <p class="testi-text">"Daily tiene cualidades extremadamente valiosas para el desarrollo de software en equipo. No solo es brillante como programadora sino también a nivel personal. Le apasiona su trabajo y es de esas personas que mejoran el ambiente dentro del equipo."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">LC</div>
+          <div>
+            <div class="testi-name">Luis Gonzalo Cañas Iniesta</div>
+            <div class="testi-role">Creator of dividendo.top · Colega senior</div>
+            <a class="testi-li" href="https://www.linkedin.com/in/luis-gonzalo-canas-iniesta/" target="_blank">🔗 Ver en LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <p class="testi-text">"Como alumna del Máster Front End Lemoncode, destacar la capacidad de trabajo, aprendizaje y colaboraciones realizadas. Daily es una desarrolladora con muy buenas capacidades técnicas que además se desenvuelve bien en equipo, una apuesta segura."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">BD</div>
+          <div>
+            <div class="testi-name">Braulio Diez Botella</div>
+            <div class="testi-role">Technical Lead at Lemoncode · Profesor Máster Frontend</div>
+            <a class="testi-li" href="https://www.linkedin.com/in/braulio-diez-botella/" target="_blank">🔗 Ver en LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <p class="testi-text">"Desarrolló nuestra página web corporativa y realiza un trabajo de calidad en las redes sociales. Es 100% recomendable como informática y como persona. Domina muy bien el inglés y nos ha ayudado en la gestión con nuestros clientes ingleses."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RH</div>
+          <div>
+            <div class="testi-name">Reforma Tu Hogar Málaga</div>
+            <div class="testi-role">Director · Cliente directo</div>
+            <a class="testi-li" href="https://www.linkedin.com/company/reforma-tu-hogar-malaga/" target="_blank">🔗 Ver en LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="logo">&lt;DMP/&gt;</div>
+  <p>
+    <a href="https://dailymp.es" target="_blank">dailymp.es</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:tech@dailymp.es">tech@dailymp.es</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/daily-miranda-pardo/" target="_blank">LinkedIn</a>
+    &nbsp;·&nbsp;
+    Málaga, España
+  </p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
