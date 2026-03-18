@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Daily Miranda Pardo — Consultora Web, SEO e Integración IA. 20+ años de experiencia. Basada en Málaga.">
+<title>Daily Miranda Pardo · Consultora Web & IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #0C0C10;
+    --ink-2:     #1E1E28;
+    --ink-3:     #32323F;
+    --muted:     #72728A;
+    --subtle:    #A8A8BE;
+    --line:      #E4E4EE;
+    --line-2:    #F0F0F6;
+    --bg:        #FAFAF8;
+    --white:     #FFFFFF;
+    --red:       #B83232;
+    --red-bright:#E04040;
+    --red-pale:  #FFF0F0;
+    --gold:      #A8823C;
+    --gold-pale: #FBF6EC;
+    --night:     #0C0C18;
+    --night-2:   #161624;
+    --night-3:   #20202E;
+    --google:    #4285F4;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  /* ── SCROLLBAR ─────────────────────────── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
+
+  /* ══════════════════════════════════════════
+     NAV
+  ══════════════════════════════════════════ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,12,16,.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    padding: 0 40px;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    color: rgba(255,255,255,.85);
+    letter-spacing: .02em;
+  }
+  .nav-logo span { color: var(--red-bright); }
+  .nav-links {
+    display: flex; gap: 28px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px; font-weight: 400;
+    color: rgba(255,255,255,.5);
+    letter-spacing: .04em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: rgba(255,255,255,.9); }
+  .nav-cta {
+    background: var(--red);
+    color: #fff !important;
+    padding: 7px 16px;
+    border-radius: 3px;
+    font-weight: 500 !important;
+  }
+  .nav-cta:hover { background: var(--red-bright) !important; }
+
+  /* ══════════════════════════════════════════
+     HERO
+  ══════════════════════════════════════════ */
+  .hero {
+    min-height: 100vh;
+    background: var(--night);
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+    padding-top: 56px;
+  }
+
+  /* geometric bg texture */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -200px; right: 200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(184,50,50,.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-left {
+    padding: 80px 64px 80px 72px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+  }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 28px; height: 1px; background: var(--gold);
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 82px);
+    font-weight: 700;
+    line-height: .98;
+    color: #fff;
+    margin-bottom: 4px;
+    letter-spacing: -.01em;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: rgba(255,255,255,.35);
+    font-weight: 400;
+    display: block;
+    font-size: .8em;
+  }
+
+  .hero-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 400; font-style: italic;
+    color: rgba(255,255,255,.42);
+    margin-bottom: 36px;
+    margin-top: 8px;
+  }
+
+  .hero-bio {
+    font-size: 15px; font-weight: 300;
+    color: rgba(255,255,255,.62);
+    line-height: 1.8;
+    max-width: 460px;
+    margin-bottom: 48px;
+  }
+  .hero-bio strong { color: rgba(255,255,255,.88); font-weight: 500; }
+
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 24px;
+    border-radius: 2px;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: .02em;
+    transition: all .2s;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+  }
+  .btn-red { background: var(--red); color: #fff; }
+  .btn-red:hover { background: var(--red-bright); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent; color: rgba(255,255,255,.65);
+    border: 1px solid rgba(255,255,255,.15);
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,.4); color: #fff; }
+
+  /* RIGHT PANEL */
+  .hero-right {
+    background: rgba(255,255,255,.03);
+    border-left: 1px solid rgba(255,255,255,.06);
+    padding: 80px 48px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+  }
+
+  .stats-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+    color: rgba(255,255,255,.25);
+    margin-bottom: 24px;
+  }
+
+  .stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,.07);
+    margin-bottom: 28px;
+  }
+  .stat {
+    padding: 24px 20px;
+    border-right: 1px solid rgba(255,255,255,.07);
+    border-bottom: 1px solid rgba(255,255,255,.07);
+  }
+  .stat:nth-child(2n) { border-right: none; }
+  .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
+
+  .stat-n {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; font-weight: 600;
+    color: #fff; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-n sup { font-size: 18px; color: var(--gold); vertical-align: super; }
+  .stat-l { font-size: 10px; color: rgba(255,255,255,.35); letter-spacing: .06em; text-transform: uppercase; }
+
+  .avail {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 1px;
+    font-size: 12px; color: rgba(255,255,255,.6);
+    margin-bottom: 24px;
+  }
+  .dot-green {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 0 3px rgba(74,222,128,.15);
+    animation: blink 2.4s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes blink {
+    0%,100% { box-shadow: 0 0 0 3px rgba(74,222,128,.15); }
+    50%      { box-shadow: 0 0 0 7px rgba(74,222,128,.05); }
+  }
+
+  .stack-row {
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding-top: 20px;
+  }
+  .stack-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: .04em;
+    padding: 4px 9px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    color: rgba(255,255,255,.42);
+    border-radius: 1px;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION WRAPPER
+  ══════════════════════════════════════════ */
+  .section { padding: 96px 72px; }
+  .section-white { background: var(--white); }
+  .section-bg { background: var(--bg); }
+  .section-dark { background: var(--night-2); }
+
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--red);
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px;
+  }
+  .section-tag::after { content: ''; flex:1; height:1px; background: var(--line); max-width: 120px; }
+
+  .section-h {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700; line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .section-h em { font-style: italic; color: var(--muted); font-weight: 400; }
+  .section-sub {
+    font-size: 15px; font-weight: 300;
+    color: var(--muted); max-width: 560px;
+    margin-bottom: 52px; line-height: 1.75;
+  }
+
+  .section-h-light { color: #fff; }
+  .section-sub-light { color: rgba(255,255,255,.45); }
+
+  /* ══════════════════════════════════════════
+     SERVICES
+  ══════════════════════════════════════════ */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    border: 1px solid var(--line);
+    gap: 1px; background: var(--line);
+  }
+  .svc {
+    background: var(--white); padding: 32px 28px;
+    transition: background .2s;
+    position: relative;
+  }
+  .svc:hover { background: #FDFDFB; }
+  .svc-n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; color: var(--subtle);
+    margin-bottom: 18px; opacity: .6;
+  }
+  .svc-icon { font-size: 20px; margin-bottom: 12px; }
+  .svc-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--ink); margin-bottom: 8px; line-height: 1.25;
+  }
+  .svc-desc { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
+  .svc-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .svc-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; padding: 3px 7px;
+    background: var(--line-2); color: var(--muted); border-radius: 1px;
+  }
+
+  /* ══════════════════════════════════════════
+     PORTFOLIO
+  ══════════════════════════════════════════ */
+  .portfolio-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .proj {
+    border: 1px solid var(--line);
+    background: var(--white);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+  }
+  .proj:hover {
+    border-color: var(--ink-3);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,0,0,.07);
+  }
+  .proj-full { grid-column: 1 / -1; }
+
+  .proj-head {
+    background: var(--night);
+    padding: 10px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .proj-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: .06em; text-transform: uppercase;
+    color: rgba(255,255,255,.45);
+  }
+  .proj-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; padding: 3px 8px;
+    background: var(--red); color: #fff; border-radius: 10px;
+  }
+
+  .proj-body { padding: 20px 22px; }
+  .proj-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .proj-desc { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+  .proj-feats { list-style: none; margin-bottom: 14px; }
+  .proj-feats li {
+    font-size: 12px; color: var(--ink-3);
+    padding: 3px 0;
+    display: flex; align-items: flex-start; gap: 6px;
+  }
+  .proj-feats li::before { content: '✓'; color: var(--red); font-size: 10px; margin-top: 2px; flex-shrink: 0; }
+  .proj-tech { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
+  .proj-tech-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; padding: 3px 7px;
+    background: var(--line-2); color: var(--muted);
+    border: 1px solid var(--line); border-radius: 1px;
+  }
+  .proj-links {
+    display: flex; gap: 16px; align-items: center;
+    padding-top: 14px; border-top: 1px solid var(--line);
+  }
+  .proj-link-main {
+    font-size: 12px; font-weight: 500;
+    color: var(--red); display: flex; align-items: center; gap: 5px;
+    transition: gap .15s;
+  }
+  .proj-link-main:hover { gap: 8px; }
+  .proj-link-sec { font-size: 12px; color: var(--muted); }
+  .proj-link-sec:hover { color: var(--ink); }
+
+  /* ══════════════════════════════════════════
+     GOOGLE BUSINESS BADGE
+  ══════════════════════════════════════════ */
+  .gbp-section { padding: 64px 72px; background: var(--night-2); }
+
+  .gbp-card {
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 4px;
+    overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1fr;
+    max-width: 860px; margin: 0 auto;
+  }
+
+  .gbp-left {
+    background: var(--night-3);
+    padding: 40px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  .gbp-logo-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px;
+  }
+  .gbp-g {
+    width: 32px; height: 32px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--google);
+    flex-shrink: 0;
+  }
+  .gbp-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: .1em;
+    color: rgba(255,255,255,.35);
+    text-transform: uppercase;
+  }
+
+  .gbp-biz-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; font-weight: 700;
+    color: #fff; line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .gbp-biz-type {
+    font-size: 12px; color: rgba(255,255,255,.35);
+    margin-bottom: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: .04em;
+  }
+
+  .gbp-stars {
+    display: flex; align-items: baseline; gap: 10px;
+    margin-bottom: 6px;
+  }
+  .gbp-score {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px; font-weight: 700;
+    color: #fff; line-height: 1;
+  }
+  .star-row { display: flex; gap: 2px; }
+  .star { color: #FBBC04; font-size: 18px; }
+  .gbp-count { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 4px; }
+
+  .gbp-address {
+    margin-top: 20px;
+    font-size: 12px; color: rgba(255,255,255,.35);
+    display: flex; align-items: flex-start; gap: 6px;
+    line-height: 1.5;
+  }
+
+  .gbp-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 24px;
+    padding: 11px 20px;
+    background: #4285F4;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 12px; font-weight: 500;
+    text-decoration: none;
+    transition: background .2s;
+    width: fit-content;
+  }
+  .gbp-btn:hover { background: #2b6cdb; }
+
+  .gbp-right {
+    background: var(--night);
+    padding: 40px;
+    display: flex; flex-direction: column; justify-content: center;
+    gap: 0;
+  }
+
+  .gbp-summary-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+    color: rgba(255,255,255,.25);
+    margin-bottom: 20px;
+  }
+
+  .gbp-highlight {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .gbp-highlight:last-child { border-bottom: none; }
+  .gbp-hi-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .gbp-hi-text {
+    font-size: 13px; color: rgba(255,255,255,.62);
+    line-height: 1.6; font-weight: 300;
+  }
+  .gbp-hi-text strong { color: rgba(255,255,255,.88); font-weight: 500; }
+
+  /* ══════════════════════════════════════════
+     WHY + CONTACT
+  ══════════════════════════════════════════ */
+  .why-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: start; }
+
+  .why-list { list-style: none; }
+  .why-item {
+    display: flex; gap: 20px;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .why-item:last-child { border-bottom: none; }
+  .why-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--red);
+    flex-shrink: 0; width: 22px; margin-top: 2px;
+  }
+  .why-h { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .why-p { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+
+  .contact-box {
+    background: var(--night);
+    padding: 36px;
+    border-radius: 2px;
+    position: sticky; top: 76px;
+  }
+  .contact-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 700;
+    color: #fff; margin-bottom: 10px; line-height: 1.2;
+  }
+  .contact-box p { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.5); line-height: 1.7; margin-bottom: 6px; }
+  .contact-links { list-style: none; margin-top: 24px; }
+  .contact-links li {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.07);
+    font-size: 12px; color: rgba(255,255,255,.55);
+  }
+  .contact-links li:last-child { border-bottom: none; }
+  .contact-links a { color: rgba(255,255,255,.8); transition: color .15s; }
+  .contact-links a:hover { color: #fff; }
+
+  /* ══════════════════════════════════════════
+     TESTIMONIALS
+  ══════════════════════════════════════════ */
+  .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .testi {
+    background: var(--bg); border: 1px solid var(--line);
+    border-radius: 2px; padding: 28px;
+    transition: border-color .2s;
+  }
+  .testi:hover { border-color: var(--ink-3); }
+  .testi-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; color: var(--line);
+    line-height: .8; margin-bottom: 8px;
+  }
+  .testi-text {
+    font-size: 13.5px; font-weight: 300; font-style: italic;
+    color: var(--ink-3); line-height: 1.75;
+    margin-bottom: 20px;
+  }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-av {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--night);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: #fff; flex-shrink: 0;
+  }
+  .testi-name { font-size: 12px; font-weight: 500; color: var(--ink); }
+  .testi-role { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .testi-li {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; color: #0A66C2;
+    display: inline-block; margin-top: 4px;
+    text-decoration: none;
+  }
+
+  /* ══════════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════════ */
+  footer {
+    background: var(--night);
+    padding: 40px 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .footer-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: rgba(255,255,255,.25);
+  }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 11px; color: rgba(255,255,255,.25); transition: color .15s; }
+  .footer-links a:hover { color: rgba(255,255,255,.65); }
+
+  /* ══════════════════════════════════════════
+     ANIMATIONS
+  ══════════════════════════════════════════ */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .65s ease, transform .65s ease;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: .1s; }
+  .reveal-d2 { transition-delay: .2s; }
+  .reveal-d3 { transition-delay: .3s; }
+  .reveal-d4 { transition-delay: .4s; }
+
+  /* ══════════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 80px 40px; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .proj-full { grid-column: 1; }
+    .gbp-card { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .contact-box { position: static; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .section { padding: 72px 40px; }
+    .gbp-section { padding: 64px 40px; }
+    footer { padding: 32px 40px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero-left { padding: 60px 24px; }
+    .section { padding: 56px 24px; }
+    .gbp-section { padding: 56px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    footer { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">&lt;<span>DMP</span>/&gt;</div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#portfolio">Portafolio</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="https://wa.me/34656636774" class="nav-cta">Contactar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="eyebrow">Consultora independiente · Málaga</p>
+    <h1 class="hero-name">
+      Daily Miranda<br>Pardo
+      <em>Frontend &amp; IA</em>
+    </h1>
+    <p class="hero-role">Ingeniera en Ciencias Informáticas · Másters duales en Desarrollo de Software</p>
+    <p class="hero-bio">
+      <strong>20+ años transformando ideas en productos digitales.</strong> Especializada en
+      desarrollo web moderno, SEO técnico avanzado, WordPress y la integración de
+      inteligencia artificial en proyectos reales. Trabajo con negocios de la Costa del Sol
+      y clientes en toda España.
+    </p>
+    <div class="hero-actions">
+      <a href="https://dailymp.es" target="_blank" class="btn btn-red">🌐 dailymp.es</a>
+      <a href="https://www.linkedin.com/in/daily-miranda-pardo/" target="_blank" class="btn btn-ghost">💼 LinkedIn</a>
+      <a href="https://wa.me/34656636774" target="_blank" class="btn btn-ghost">💬 WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <p class="stats-label">Métricas clave</p>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-n">20<sup>+</sup></div>
+        <div class="stat-l">Años de experiencia</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">95<sup>+</sup></div>
+        <div class="stat-l">PageSpeed Score</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">219<sup>+</sup></div>
+        <div class="stat-l">Tests E2E entregados</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">54<sup>+</sup></div>
+        <div class="stat-l">Artículos publicados</div>
+      </div>
+    </div>
+    <div class="avail">
+      <span class="dot-green"></span>
+      Disponible para nuevos proyectos
+    </div>
+    <div class="stack-row">
+      <div class="stats-label" style="margin-bottom:12px">Stack principal</div>
+      <div class="stack-chips">
+        <span class="chip">React</span><span class="chip">Next.js 15</span>
+        <span class="chip">TypeScript</span><span class="chip">WordPress</span>
+        <span class="chip">Python</span><span class="chip">Claude AI</span>
+        <span class="chip">Supabase</span><span class="chip">Tailwind</span>
+        <span class="chip">Playwright</span><span class="chip">Docker</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section-white" id="servicios">
+  <p class="section-tag reveal">Lo que ofrezco</p>
+  <h2 class="section-h reveal reveal-d1">Servicios para tu<br><em>negocio digital</em></h2>
+  <p class="section-sub reveal reveal-d2">Desde la emergencia técnica hasta la estrategia a largo plazo. Metodología de ingeniería senior aplicada a negocios reales.</p>
+
+  <div class="services-grid reveal reveal-d3">
+    <div class="svc">
+      <div class="svc-n">01</div>
+      <div class="svc-icon">🔧</div>
+      <div class="svc-name">WordPress &amp; Mejora técnica</div>
+      <p class="svc-desc">Optimización, seguridad, limpieza de hacks SEO, rendimiento y rediseño. Código limpio, updates controlados, sin roturas.</p>
+      <div class="svc-tags"><span class="svc-tag">WordPress</span><span class="svc-tag">Wordfence</span><span class="svc-tag">WP Rocket</span><span class="svc-tag">Hardening</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-n">02</div>
+      <div class="svc-icon">🔍</div>
+      <div class="svc-name">SEO Técnico Avanzado</div>
+      <p class="svc-desc">Auditoría completa, Schema.org, Core Web Vitals, Google Search Console, SEO local y estrategia de contenido orientada a conversión.</p>
+      <div class="svc-tags"><span class="svc-tag">Schema.org</span><span class="svc-tag">GSC</span><span class="svc-tag">CWV</span><span class="svc-tag">Local SEO</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-n">03</div>
+      <div class="svc-icon">🌐</div>
+      <div class="svc-name">Diseño Web &amp; Migración</div>
+      <p class="svc-desc">Nuevos sitios desde cero o migración de hosting. Dominio, correo corporativo, SSL y puesta en marcha completa incluida.</p>
+      <div class="svc-tags"><span class="svc-tag">Migración</span><span class="svc-tag">DNS</span><span class="svc-tag">Correo corp.</span><span class="svc-tag">Hosting</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-n">04</div>
+      <div class="svc-icon">🤖</div>
+      <div class="svc-name">Integración de IA</div>
+      <p class="svc-desc">Automatizaciones, publicación social automática desde RSS, workflows con LLMs y agentes AI para optimizar tu negocio.</p>
+      <div class="svc-tags"><span class="svc-tag">Claude AI</span><span class="svc-tag">GitHub Actions</span><span class="svc-tag">Python</span><span class="svc-tag">LLM</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-n">05</div>
+      <div class="svc-icon">📋</div>
+      <div class="svc-name">Mantenimiento Mensual</div>
+      <p class="svc-desc">Updates, backups diarios en nube, uptime 24/7, informe mensual GA4 + GSC y 1h de cambios de contenido incluida cada mes.</p>
+      <div class="svc-tags"><span class="svc-tag">Backups</span><span class="svc-tag">Uptime</span><span class="svc-tag">GA4</span><span class="svc-tag">Informes</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-n">06</div>
+      <div class="svc-icon">🚀</div>
+      <div class="svc-name">Apps React &amp; Next.js</div>
+      <p class="svc-desc">Frontend de alto rendimiento con TypeScript, arquitectura limpia, 219+ tests E2E y deploy en Vercel o Netlify desde día uno.</p>
+      <div class="svc-tags"><span class="svc-tag">Next.js 15</span><span class="svc-tag">TypeScript</span><span class="svc-tag">Playwright</span><span class="svc-tag">Vercel</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section section-bg" id="portfolio">
+  <p class="section-tag reveal">Proyectos reales</p>
+  <h2 class="section-h reveal reveal-d1">Portafolio <em>seleccionado</em></h2>
+  <p class="section-sub reveal reveal-d2">7 proyectos entregados — webs de negocio local, plataformas SaaS y aplicaciones empresariales. Todos en producción.
+    <a href="https://dailymp.es/portafolio" target="_blank" style="color:var(--red); font-weight:500">Ver portafolio completo →</a>
+  </p>
+
+  <div class="portfolio-grid">
+
+    <div class="proj reveal">
+      <div class="proj-head">
+        <span class="proj-cat">SaaS · Fotografía Profesional</span>
+        <span class="proj-badge">★ Destacado</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-name">Fortress Gallery</div>
+        <p class="proj-desc">Plataforma SaaS para fotógrafos: galerías protegidas con contraseña, marca de agua automática, control de descargas y dashboard de estadísticas. Modelo de suscripción con tres planes.</p>
+        <ul class="proj-feats">
+          <li>Galerías protegidas con contraseña por cliente</li>
+          <li>Watermark automático en todas las imágenes</li>
+          <li>Dashboard de estadísticas de descargas</li>
+        </ul>
+        <div class="proj-tech">
+          <span class="proj-tech-tag">Next.js 15</span><span class="proj-tech-tag">React 19</span>
+          <span class="proj-tech-tag">TypeScript</span><span class="proj-tech-tag">Supabase</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://fortress-gallery.vercel.app/" target="_blank" class="proj-link-main">🔗 Ver en vivo →</a>
+          <a href="https://dailymp.es/blog/16-fortress-gallery-protege-tu-arte" target="_blank" class="proj-link-sec">Leer caso →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj reveal reveal-d1">
+      <div class="proj-head">
+        <span class="proj-cat">Empresarial · Alquiler de Vehículos</span>
+        <span class="proj-badge">★ Destacado</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-name">OK Car Hire</div>
+        <p class="proj-desc">Plataforma empresarial entregada en &lt;8 semanas. Integración Odoo 18, 219+ tests E2E con Playwright, CI/CD con Docker e IA para acelerar desarrollo.</p>
+        <ul class="proj-feats">
+          <li>Integración Odoo 18 vía JSON-RPC</li>
+          <li>219+ tests E2E automatizados con Playwright</li>
+          <li>Docker multi-stage CI/CD en producción</li>
+        </ul>
+        <div class="proj-tech">
+          <span class="proj-tech-tag">React 18</span><span class="proj-tech-tag">TypeScript</span>
+          <span class="proj-tech-tag">Odoo 18</span><span class="proj-tech-tag">Playwright</span><span class="proj-tech-tag">Docker</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://www.ok-carhire.com/" target="_blank" class="proj-link-main">🔗 Ver en vivo →</a>
+          <a href="https://dailymp.es/blog/05-ok-car-hire-caso-exito-tecnico-comercial" target="_blank" class="proj-link-sec">Leer caso →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj reveal">
+      <div class="proj-head"><span class="proj-cat">Mascotas · SEO Local · Málaga</span></div>
+      <div class="proj-body">
+        <div class="proj-name">Hotel Canino Churriana</div>
+        <p class="proj-desc">Web hotel canino en Churriana. SEO local desde el primer día, Schema.org LocalBusiness + AnimalShelter, Google Business y 95 en PageSpeed móvil.</p>
+        <ul class="proj-feats">
+          <li>95 PageSpeed móvil · LCP &lt; 1,4s · CLS 0</li>
+          <li>SEO local + Google Business integrado</li>
+        </ul>
+        <div class="proj-tech">
+          <span class="proj-tech-tag">Next.js 15</span><span class="proj-tech-tag">Schema.org</span><span class="proj-tech-tag">Google Business</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://pet-hotel-churriana.vercel.app/" target="_blank" class="proj-link-main">🔗 Ver en vivo →</a>
+          <a href="https://dailymp.es/blog/22-web-hotel-canino-churriana" target="_blank" class="proj-link-sec">Leer caso →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj reveal reveal-d1">
+      <div class="proj-head"><span class="proj-cat">Eventos · SEO Local · Churriana</span></div>
+      <div class="proj-body">
+        <div class="proj-name">Celebrarte Churriana</div>
+        <p class="proj-desc">Espacio de celebraciones en Churriana. Galería de alto impacto, servicios para bodas y eventos, WhatsApp directo y SEO local de proximidad.</p>
+        <ul class="proj-feats">
+          <li>Galería visual optimizada para conversión</li>
+          <li>SEO local bodas, cumpleaños y eventos corp.</li>
+        </ul>
+        <div class="proj-tech">
+          <span class="proj-tech-tag">Astro</span><span class="proj-tech-tag">Tailwind</span><span class="proj-tech-tag">WhatsApp API</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://celebrarte-churriana.vercel.app/" target="_blank" class="proj-link-main">🔗 Ver en vivo →</a>
+          <a href="https://dailymp.es/blog/26-casos-de-exito-renting-web-celebrarte-cubatec" target="_blank" class="proj-link-sec">Leer caso →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj reveal">
+      <div class="proj-head"><span class="proj-cat">Servicios Técnicos · Málaga</span></div>
+      <div class="proj-body">
+        <div class="proj-name">CubaTec Málaga</div>
+        <p class="proj-desc">Web empresa de reparación de electrodomésticos. Diseño que transmite confianza, listado de servicios, formulario de presupuesto y &lt;1,5s en móvil.</p>
+        <ul class="proj-feats">
+          <li>Carga &lt; 1,5s en móvil — mobile-first</li>
+          <li>SEO local para reparaciones Málaga</li>
+        </ul>
+        <div class="proj-tech">
+          <span class="proj-tech-tag">Next.js 15</span><span class="proj-tech-tag">TypeScript</span><span class="proj-tech-tag">SEO Local</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://cuba-tec-malaga.vercel.app/" target="_blank" class="proj-link-main">🔗 Ver en vivo →</a>
+          <a href="https://dailymp.es/blog/26-casos-de-exito-renting-web-celebrarte-cubatec" target="_blank" class="proj-link-sec">Leer caso →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj reveal reveal-d1">
+      <div class="proj-head"><span class="proj-cat">Hostelería · Restauración</span></div>
+      <div class="proj-body">
+        <div class="proj-name">Cafetería Hermanos Portillo</div>
+        <p class="proj-desc">Carta digital interactiva, encargos online y SEO local de proximidad. Diseño orientado a conversión con tiempos de carga optimizados.</p>
+        <ul class="proj-feats">
+          <li>Carta digital + encargos online</li>
+          <li>SEO "cafetería cerca de mí"</li>
+        </ul>
+        <div class="proj-tech">
+          <span class="proj-tech-tag">Next.js 15</span><span class="proj-tech-tag">TypeScript</span><span class="proj-tech-tag">SEO Local</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://cafeteria-hermanos-portillo.vercel.app/" target="_blank" class="proj-link-main">🔗 Ver en vivo →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj proj-full reveal">
+      <div class="proj-head"><span class="proj-cat">Restauración y Ocio · Málaga</span></div>
+      <div class="proj-body">
+        <div class="proj-name">Sabor Cubano Málaga</div>
+        <p class="proj-desc">Bar-restaurante temático con carta digital, formularios de reserva de alta disponibilidad y diseño que captura la personalidad del local. Posicionamiento específico para búsquedas de restaurante cubano en Málaga.</p>
+        <ul class="proj-feats">
+          <li>Carta digital y sistema de reservas online</li>
+          <li>SEO para restaurante temático en Málaga</li>
+          <li>Alta disponibilidad en producción</li>
+        </ul>
+        <div class="proj-tech">
+          <span class="proj-tech-tag">Next.js 15</span><span class="proj-tech-tag">TypeScript</span><span class="proj-tech-tag">Tailwind</span><span class="proj-tech-tag">SEO Local</span>
+        </div>
+        <div class="proj-links">
+          <a href="https://sabor-cubano-malaga.vercel.app/" target="_blank" class="proj-link-main">🔗 Ver en vivo →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GOOGLE BUSINESS -->
+<div class="gbp-section" id="google-business">
+  <div class="gbp-card reveal">
+
+    <div class="gbp-left">
+      <div class="gbp-logo-row">
+        <div class="gbp-g">G</div>
+        <span class="gbp-label">Google Business Profile</span>
+      </div>
+      <div class="gbp-biz-name">DailyMP</div>
+      <div class="gbp-biz-type">Software company · Churriana, Málaga</div>
+      <div class="gbp-stars">
+        <div class="gbp-score">5,0</div>
+        <div>
+          <div class="star-row">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="star">★</span><span class="star">★</span>
+          </div>
+          <div class="gbp-count">7 reseñas verificadas</div>
+        </div>
+      </div>
+      <div class="gbp-address">
+        <span>📍</span>
+        <span>C. Maestro Flecan, 2<br>Churriana, 29140 Málaga</span>
+      </div>
+      <a href="https://www.google.com/maps/place/DailyMP/@36.6643319,-4.499973,17z" target="_blank" class="gbp-btn">
+        <span>G</span> Ver perfil en Google Maps
+      </a>
+    </div>
+
+    <div class="gbp-right">
+      <div class="gbp-summary-title">Resumen de reseñas de clientes</div>
+
+      <div class="gbp-highlight">
+        <span class="gbp-hi-icon">⚡</span>
+        <div class="gbp-hi-text"><strong>Resultados rápidos y medibles.</strong> Clientes destacan entregas en tiempo récord con calidad técnica sobresaliente y resultados visibles desde el primer mes.</div>
+      </div>
+      <div class="gbp-highlight">
+        <span class="gbp-hi-icon">🎯</span>
+        <div class="gbp-hi-text"><strong>SEO local que funciona.</strong> Negocios de Churriana y la Costa del Sol reportan mejoras reales en visibilidad en Google y aumento de contactos desde la web.</div>
+      </div>
+      <div class="gbp-highlight">
+        <span class="gbp-hi-icon">🤝</span>
+        <div class="gbp-hi-text"><strong>Comunicación clara y trato cercano.</strong> Reseñas coinciden en la facilidad de trabajar con Daily: explica sin tecnicismos, responde rápido y cumple lo que promete.</div>
+      </div>
+      <div class="gbp-highlight">
+        <span class="gbp-hi-icon">🔒</span>
+        <div class="gbp-hi-text"><strong>Seguridad y tranquilidad post-entrega.</strong> Clientes valoran el soporte continuo, el mantenimiento proactivo y no tener que preocuparse de la web una vez entregada.</div>
+      </div>
+      <div class="gbp-highlight">
+        <span class="gbp-hi-icon">✦</span>
+        <div class="gbp-hi-text"><strong>Puntuación perfecta 5,0 sobre 5.</strong> Las 7 reseñas son de 5 estrellas — 100% de satisfacción verificada por Google.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- WHY + CONTACT -->
+<section class="section section-white" id="sobre-mi">
+  <p class="section-tag reveal">Por qué elegirme</p>
+  <h2 class="section-h reveal reveal-d1">Ingeniería real,<br><em>no plantillas</em></h2>
+
+  <div class="why-grid">
+    <ul class="why-list reveal reveal-d2">
+      <li class="why-item">
+        <span class="why-num">01</span>
+        <div>
+          <div class="why-h">20 años de experiencia técnica real</div>
+          <p class="why-p">Ingeniería en Ciencias Informáticas + Másters duales en Desarrollo de Software. No soy diseñadora que "hace webs" — soy ingeniera que construye sistemas robustos.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <span class="why-num">02</span>
+        <div>
+          <div class="why-h">IA como herramienta, no como moda</div>
+          <p class="why-p">Especialista en integración de IA en desarrollo. Uso LLMs y automatizaciones para entregarte más valor en menos tiempo — con mayor calidad y trazabilidad.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <span class="why-num">03</span>
+        <div>
+          <div class="why-h">Performance-first desde el día uno</div>
+          <p class="why-p">PageSpeed 95+ garantizado. Core Web Vitals optimizados. Los sitios que construyo cargan rápido porque la velocidad afecta directamente al SEO y a la conversión.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <span class="why-num">04</span>
+        <div>
+          <div class="why-h">Sin tecnicismos, con resultados medibles</div>
+          <p class="why-p">Informes mensuales reales con GA4 y GSC. Sabes exactamente qué se ha hecho, por qué, y qué impacto ha tenido. Sin letra pequeña, sin sorpresas.</p>
+        </div>
+      </li>
+      <li class="why-item">
+        <span class="why-num">05</span>
+        <div>
+          <div class="why-h">Basada en Málaga, disponible para toda España</div>
+          <p class="why-p">Conocimiento real del mercado local. Disponible para reuniones presenciales en la Costa del Sol y videoconferencias para el resto de España.</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="contact-box reveal reveal-d3">
+      <h3>Hablemos de tu proyecto</h3>
+      <p>Cuéntame dónde está tu sitio ahora y a dónde quieres llegar.</p>
+      <p>Propuesta en 48 horas. Sin compromisos.</p>
+      <ul class="contact-links">
+        <li>🌐 <a href="https://dailymp.es" target="_blank">dailymp.es</a></li>
+        <li>📧 <a href="mailto:tech@dailymp.es">tech@dailymp.es</a></li>
+        <li>💬 <a href="https://wa.me/34656636774" target="_blank">WhatsApp directo</a></li>
+        <li>💼 <a href="https://www.linkedin.com/in/daily-miranda-pardo/" target="_blank">LinkedIn</a></li>
+        <li>💻 <a href="https://github.com/dailymp" target="_blank">GitHub</a></li>
+        <li>🗺️ <a href="https://www.google.com/maps/place/DailyMP/@36.6643319,-4.499973,17z" target="_blank">Google Business</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-bg" id="testimonios">
+  <p class="section-tag reveal">Lo que dicen</p>
+  <h2 class="section-h reveal reveal-d1">Recomendaciones <em>verificadas</em></h2>
+  <p class="section-sub reveal reveal-d2">Valoraciones reales de LinkedIn — verificables directamente en cada perfil.</p>
+
+  <div class="testi-grid">
+    <div class="testi reveal">
+      <div class="testi-q">"</div>
+      <p class="testi-text">Persona muy organizada y excelente solucionadora de problemas. Tiene mucha experiencia no solo en el contexto académico sino también en la industria. La recomiendo altamente dados su trayectoria profesional y sus habilidades de programación.</p>
+      <div class="testi-author">
+        <div class="testi-av">MJ</div>
+        <div>
+          <div class="testi-name">María Jesús García Godoy</div>
+          <div class="testi-role">Senior Software Engineer · AI Specialist · PhD in AI</div>
+          <a class="testi-li" href="https://www.linkedin.com/in/maria-jesus-garcia-godoy/" target="_blank">🔗 Ver en LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="testi reveal reveal-d1">
+      <div class="testi-q">"</div>
+      <p class="testi-text">Daily tiene cualidades extremadamente valiosas para el desarrollo de software en equipo. No solo es brillante como programadora sino también a nivel personal. Le apasiona su trabajo y es de esas personas que mejoran el ambiente del equipo.</p>
+      <div class="testi-author">
+        <div class="testi-av">LC</div>
+        <div>
+          <div class="testi-name">Luis Gonzalo Cañas Iniesta</div>
+          <div class="testi-role">Creator of dividendo.top · Colega senior</div>
+          <a class="testi-li" href="https://www.linkedin.com/in/luis-gonzalo-canas-iniesta/" target="_blank">🔗 Ver en LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="testi reveal">
+      <div class="testi-q">"</div>
+      <p class="testi-text">Como alumna del Máster Front End Lemoncode, destacar la capacidad de trabajo, aprendizaje y colaboraciones realizadas. Daily es una desarrolladora con muy buenas capacidades técnicas, una apuesta segura.</p>
+      <div class="testi-author">
+        <div class="testi-av">BD</div>
+        <div>
+          <div class="testi-name">Braulio Diez Botella</div>
+          <div class="testi-role">Technical Lead at Lemoncode · Profesor Máster Frontend</div>
+          <a class="testi-li" href="https://www.linkedin.com/in/braulio-diez-botella/" target="_blank">🔗 Ver en LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="testi reveal reveal-d1">
+      <div class="testi-q">"</div>
+      <p class="testi-text">Desarrolló nuestra página web corporativa y realiza un trabajo de calidad en las redes sociales. Es 100% recomendable como informática y como persona. Domina muy bien el inglés y nos ayudó con nuestros clientes ingleses.</p>
+      <div class="testi-author">
+        <div class="testi-av">RH</div>
+        <div>
+          <div class="testi-name">Reforma Tu Hogar Málaga</div>
+          <div class="testi-role">Director · Cliente directo</div>
+          <a class="testi-li" href="https://www.linkedin.com/company/reforma-tu-hogar-malaga/" target="_blank">🔗 Ver en LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">&lt;DMP/&gt; · Daily Miranda Pardo · Churriana, Málaga</div>
+  <div class="footer-links">
+    <a href="https://dailymp.es" target="_blank">Web</a>
+    <a href="mailto:tech@dailymp.es">Email</a>
+    <a href="https://www.linkedin.com/in/daily-miranda-pardo/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/dailymp" target="_blank">GitHub</a>
+    <a href="https://wa.me/34656636774" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for reveal animations
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Mobile nav toggle could go here if needed
+</script>
+</body>
+</html>
